@@ -1,9 +1,9 @@
 /*
  * Course: COEN 2210 - Introduction to Programming
- * Name: [Your Full Name]
+ * Name: [Francisco H. Martinez Cruz]
  * Lab: 12 - Search, Sorting and Statistics
- * Description: [What this specific file does]
- * Due Date: [Date]
+ * Description: [This file searches inspection records and analyzes vibration readings using linear search, selection sort, and basic statistics (mean, median, and mode).]
+ * Due Date: [11/9/2026]
  */
 
 #include <iostream>
@@ -177,18 +177,12 @@ int displayInspectionsByArea(
     return matchCount;
 }
 
-int copyVibrations(
-    const Inspection inspections[],
-    int capacity,
-    double values[]
-) {
+int copyVibrations(const Inspection inspections[], int capacity, double values[]) {
     int valueCount = 0;
 
     for (int index = 0; index < capacity; index++) {
         if (!inspections[index].isEmpty) {
-            values[valueCount] =
-                inspections[index].vibration;
-
+            values[valueCount] = inspections[index].vibration;
             valueCount++;
         }
     }
@@ -298,3 +292,40 @@ void displayModes(
 
     cout << endl;
 }
+
+/*
+ * Test Cases:
+ * 1. Inputs: Option 1, ID 109
+ *    Expected: ID: 109 | Area: Assembly | Vibration: 0.30
+ *    Observed: ID: 109 | Area: Assembly | Vibration: 0.30
+ *
+ * 2. Inputs: Option 1, ID 999
+ *    Expected: Inspection not found.
+ *    Observed: Inspection not found.
+ *
+ * 3. Inputs: Option 2, Area Assembly
+ *    Expected: Matches: 3
+ *    Observed: Matches: 3
+ *
+ * 4. Inputs: Option 3
+ *    Expected: Values used: 6, Mean: 0.24, Median: 0.23, Mode: 0.15 0.30
+ *    Observed: Values used: 6, Mean: 0.24, Median: 0.22, Mode: 0.15 0.30
+ */
+
+ /-
+ * Analysis:
+ * 1. Why does findInspectionById return an index instead of the ID?
+ *    It returns the index so the program can locate and access the complete inspection record stored in the array.
+ *
+ * 2. Why must displayInspectionsByArea continue after its first match?
+ *    Because multiple inspections can belong to the same area, so the entire array must be searched to find all matches.
+ *
+ * 3. Why does copyVibrations use valueCount separately from index?
+ *    Because valueCount tracks only occupied inspections and ensures the values array is filled without gaps.
+ *
+ * 4. Why is selectionSort applied to sortedVibrations instead of inspections?
+ *    Because the lab requires sorting only the copied vibration values while keeping the original inspection records unchanged.
+ *
+ * 5. Which two values determine the median when six readings are sorted?
+ *    The middle two values, 0.15 and 0.30, determine the median because there are six readings.
+ */
