@@ -312,7 +312,7 @@ void displayModes(
  *    Observed: Values used: 6, Mean: 0.24, Median: 0.22, Mode: 0.15 0.30
  */
 
- /-
+ /*
  * Analysis:
  * 1. Why does findInspectionById return an index instead of the ID?
  *    It returns the index so the program can locate and access the complete inspection record stored in the array.
